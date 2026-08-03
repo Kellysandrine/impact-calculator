@@ -1,16 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>Impact Calculator Demo</title>
-    
-
-  </head>
-    
-  <body>
-  <!DOCTYPE html>
-<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,31 +7,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #F5F0E8;
-    --dark: #1A1510;
-    --earth: #3D2B1F;
-    --coffee: #6B3F2A;
-    --teal: #1D9E75;
-    --teal-light: #E1F5EE;
-    --amber: #C8842A;
-    --amber-light: #FDF3E3;
-    --text-muted: #7A6A5A;
-    --border: rgba(61,43,31,0.15);
+    /* ── Rutasoka brand colours ── */
+    --off-white: #F7F4EF;      /* derived off-white — exact brand hex not specified; adjust here if you have it */
+    --brown: #725847;          /* Rutasoka brand brown */
+    --dark-green: #708E40;     /* Rutasoka brand dark green */
+    --light-green: #C9DAAB;    /* Rutasoka brand light green */
+
+    /* ── Derived shades (not core brand swatches) — needed only for text legibility ── */
+    --brown-dark: #4A392E;     /* darkened brown, for headings/body text on light backgrounds */
+    --brown-muted: #826C5D;    /* muted brown, for secondary/label text (meets WCAG AA 4.5:1 on off-white) */
+    --dark-green-deep: #32401B;/* darkened dark green, for text on light-green backgrounds (4.5:1+) */
+    --border: rgba(114,88,71,0.18); /* brand brown at low opacity, for hairline borders */
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--dark);
+    background: var(--off-white);
+    color: var(--brown-dark);
     min-height: 100vh;
     padding: 0;
   }
 
   .hero {
-    background: var(--earth);
-    color: var(--cream);
+    background: var(--brown);
+    color: var(--off-white);
     padding: 3rem 2rem 2.5rem;
     text-align: center;
     position: relative;
@@ -54,15 +44,15 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 30% 60%, rgba(107,63,42,0.4) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 20%, rgba(200,132,42,0.15) 0%, transparent 50%);
+      radial-gradient(ellipse at 30% 60%, rgba(74,57,46,0.4) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(112,142,64,0.18) 0%, transparent 50%);
     pointer-events: none;
   }
 
-  .hero-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); margin-bottom: 14px; }
+  .hero-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light-green); margin-bottom: 14px; }
   .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; line-height: 1.2; margin-bottom: 12px; position: relative; }
-  .hero h1 em { font-style: italic; color: var(--amber); }
-  .hero-sub { font-size: 14px; font-weight: 300; color: rgba(245,240,232,0.7); max-width: 560px; margin: 0 auto; line-height: 1.6; }
+  .hero h1 em { font-style: italic; color: var(--light-green); }
+  .hero-sub { font-size: 14px; font-weight: 300; color: rgba(247,244,239,0.75); max-width: 560px; margin: 0 auto; line-height: 1.6; }
 
   .main { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
@@ -70,105 +60,105 @@
 
   .inputs-card { background: #fff; border-radius: 16px; border: 0.5px solid var(--border); padding: 2rem; margin-bottom: 1.5rem; }
 
-  .inputs-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--earth); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+  .inputs-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--brown); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
   .inputs-title::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
 
   .input-group { margin-bottom: 1.5rem; }
-  .input-label { font-size: 12px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; display: block; }
+  .input-label { font-size: 12px; font-weight: 500; color: var(--brown-muted); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; display: block; }
 
   .slider-row { display: flex; align-items: center; gap: 14px; }
 
   input[type=range] { flex: 1; -webkit-appearance: none; height: 4px; background: var(--border); border-radius: 2px; outline: none; }
-  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--earth); cursor: pointer; border: 3px solid var(--cream); box-shadow: 0 0 0 1px var(--earth); }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--brown); cursor: pointer; border: 3px solid var(--off-white); box-shadow: 0 0 0 1px var(--brown); }
   input[type=range]::-webkit-slider-runnable-track { border-radius: 2px; }
 
-  .slider-val { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 400; color: var(--earth); min-width: 90px; text-align: right; }
+  .slider-val { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 400; color: var(--brown); min-width: 90px; text-align: right; }
 
   .select-row { display: flex; gap: 8px; flex-wrap: wrap; }
-  .sel-btn { padding: 8px 14px; border-radius: 20px; border: 0.5px solid var(--border); background: transparent; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
-  .sel-btn:hover { border-color: var(--coffee); color: var(--coffee); }
-  .sel-btn.active { background: var(--earth); color: var(--cream); border-color: var(--earth); }
+  .sel-btn { padding: 8px 14px; border-radius: 20px; border: 0.5px solid var(--border); background: transparent; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--brown-muted); cursor: pointer; transition: all 0.15s; }
+  .sel-btn:hover { border-color: var(--brown); color: var(--brown); }
+  .sel-btn.active { background: var(--brown); color: var(--off-white); border-color: var(--brown); }
 
   .results-section { margin-bottom: 1.5rem; }
-  .results-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+  .results-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brown-muted); margin-bottom: 12px; }
 
   .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 10px; }
   .metric-card { background: #fff; border: 0.5px solid var(--border); border-radius: 12px; padding: 1.1rem 1rem; position: relative; overflow: hidden; transition: transform 0.2s; }
   .metric-card:hover { transform: translateY(-2px); }
-  .metric-card.teal   { border-top: 2px solid var(--teal); }
-  .metric-card.amber  { border-top: 2px solid var(--amber); }
-  .metric-card.coffee { border-top: 2px solid var(--coffee); }
-  .metric-card.earth  { border-top: 2px solid var(--earth); }
-  .metric-lbl  { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; line-height: 1.4; }
-  .metric-val  { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 400; color: var(--dark); line-height: 1; margin-bottom: 4px; }
-  .metric-unit { font-size: 11px; color: var(--text-muted); }
+  .metric-card.teal   { border-top: 2px solid var(--dark-green); }
+  .metric-card.amber  { border-top: 2px solid var(--light-green); }
+  .metric-card.coffee { border-top: 2px solid var(--brown); }
+  .metric-card.earth  { border-top: 2px solid var(--brown-dark); }
+  .metric-lbl  { font-size: 11px; color: var(--brown-muted); margin-bottom: 6px; line-height: 1.4; }
+  .metric-val  { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 400; color: var(--brown-dark); line-height: 1; margin-bottom: 4px; }
+  .metric-unit { font-size: 11px; color: var(--brown-muted); }
 
   /* Impact bars — hidden from display, kept for PDF */
   .impact-bar-section { display: none; }
 
   /* ── CARBON SECTION — impact bar style ── */
   .carbon-section {
-    background: var(--teal-light);
-    border: 0.5px solid rgba(29,158,117,0.2);
+    background: var(--light-green);
+    border: 0.5px solid rgba(112,142,64,0.25);
     border-radius: 12px;
     padding: 1.25rem 1.5rem;
     margin-bottom: 1.5rem;
   }
 
   /* Shared bar classes — used by carbon section */
-  .impact-bar-title { font-size: 12px; font-weight: 500; color: #085041; margin-bottom: 12px; }
+  .impact-bar-title { font-size: 12px; font-weight: 500; color: var(--dark-green-deep); margin-bottom: 12px; }
   .impact-bar-row   { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-  .ibar-lbl  { font-size: 12px; color: #0F6E56; width: 140px; flex-shrink: 0; }
-  .ibar-track { flex: 1; background: rgba(29,158,117,0.15); border-radius: 4px; height: 6px; overflow: hidden; }
-  .ibar-fill  { height: 100%; border-radius: 4px; background: var(--teal); transition: width 0.6s cubic-bezier(.4,0,.2,1); }
-  .ibar-val   { font-size: 12px; font-weight: 500; color: #085041; width: 70px; text-align: right; flex-shrink: 0; }
+  .ibar-lbl  { font-size: 12px; color: var(--dark-green-deep); width: 140px; flex-shrink: 0; }
+  .ibar-track { flex: 1; background: rgba(112,142,64,0.2); border-radius: 4px; height: 6px; overflow: hidden; }
+  .ibar-fill  { height: 100%; border-radius: 4px; background: var(--dark-green); transition: width 0.6s cubic-bezier(.4,0,.2,1); }
+  .ibar-val   { font-size: 12px; font-weight: 500; color: var(--dark-green-deep); width: 70px; text-align: right; flex-shrink: 0; }
 
-  .carbon-note-bottom { font-size: 10px; color: #0F6E56; margin-top: 10px; line-height: 1.5; }
+  .carbon-note-bottom { font-size: 10px; color: var(--dark-green-deep); margin-top: 10px; line-height: 1.5; }
 
   /* Story card */
-  .story-card { background: var(--earth); color: var(--cream); border-radius: 16px; padding: 1.75rem 2rem; margin-bottom: 1.5rem; position: relative; overflow: hidden; }
-  .story-card::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; border-radius: 50%; background: rgba(200,132,42,0.12); }
+  .story-card { background: var(--brown); color: var(--off-white); border-radius: 16px; padding: 1.75rem 2rem; margin-bottom: 1.5rem; position: relative; overflow: hidden; }
+  .story-card::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; border-radius: 50%; background: rgba(201,218,171,0.15); }
   .story-quote { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 2.5vw, 1.25rem); font-weight: 400; font-style: italic; line-height: 1.5; margin-bottom: 14px; position: relative; }
-  .story-origin { font-size: 12px; font-weight: 300; color: rgba(245,240,232,0.7); line-height: 1.6; }
-  .story-origin strong { color: var(--amber); font-weight: 500; }
+  .story-origin { font-size: 12px; font-weight: 300; color: rgba(247,244,239,0.75); line-height: 1.6; }
+  .story-origin strong { color: var(--light-green); font-weight: 500; }
 
   .pillar-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
   .chip { font-size: 11px; font-weight: 500; padding: 5px 12px; border-radius: 20px; display: flex; align-items: center; gap: 5px; }
   .chip-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-  .chip.quality  { background: var(--amber-light); color: #633806; }
-  .chip.quality  .chip-dot { background: var(--amber); }
-  .chip.sourcing { background: #E6F1FB; color: #0C447C; }
-  .chip.sourcing .chip-dot { background: #378ADD; }
-  .chip.impact   { background: var(--teal-light); color: #085041; }
-  .chip.impact   .chip-dot { background: var(--teal); }
+  .chip.quality  { background: var(--light-green); color: var(--brown-dark); }
+  .chip.quality  .chip-dot { background: var(--brown); }
+  .chip.sourcing { background: var(--off-white); border: 0.5px solid var(--brown); color: var(--brown); }
+  .chip.sourcing .chip-dot { background: var(--brown); }
+  .chip.impact   { background: var(--light-green); color: var(--dark-green-deep); }
+  .chip.impact   .chip-dot { background: var(--dark-green); }
 
-  .cta-section { background: var(--cream); border: 0.5px solid var(--border); border-radius: 16px; padding: 1.75rem 2rem; text-align: center; }
-  .cta-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
-  .cta-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; color: var(--earth); margin-bottom: 8px; }
-  .cta-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6; }
+  .cta-section { background: var(--off-white); border: 0.5px solid var(--border); border-radius: 16px; padding: 1.75rem 2rem; text-align: center; }
+  .cta-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brown-muted); margin-bottom: 10px; }
+  .cta-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; color: var(--brown); margin-bottom: 8px; }
+  .cta-sub { font-size: 13px; color: var(--brown-muted); margin-bottom: 1.5rem; line-height: 1.6; }
   .cta-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 
-  .btn-primary { padding: 12px 24px; background: var(--earth); color: var(--cream); border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.15s; }
+  .btn-primary { padding: 12px 24px; background: var(--brown); color: var(--off-white); border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.15s; }
   .btn-primary:hover { opacity: 0.88; }
 
-  .btn-secondary { padding: 12px 24px; background: transparent; color: var(--earth); border: 0.5px solid var(--earth); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.15s; }
-  .btn-secondary:hover { background: rgba(61,43,31,0.06); }
+  .btn-secondary { padding: 12px 24px; background: transparent; color: var(--brown); border: 0.5px solid var(--brown); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.15s; }
+  .btn-secondary:hover { background: rgba(114,88,71,0.06); }
 
-  .btn-shop { padding: 12px 24px; background: var(--amber); color: var(--cream); border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.15s; }
+  .btn-shop { padding: 12px 24px; background: var(--light-green); color: var(--brown-dark); border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.15s; }
   .btn-shop:hover { opacity: 0.88; }
 
   .cta-mode { display: none; }
   .cta-mode.active { display: inline-block; }
 
   .lead-magnet { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 0.5px solid var(--border); }
-  .lead-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--earth); margin-bottom: 6px; }
-  .lead-sub { font-size: 13px; color: var(--text-muted); line-height: 1.5; max-width: 520px; margin: 0 auto 1rem; }
+  .lead-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--brown); margin-bottom: 6px; }
+  .lead-sub { font-size: 13px; color: var(--brown-muted); line-height: 1.5; max-width: 520px; margin: 0 auto 1rem; }
   .lead-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-  .lead-form input { min-width: 260px; padding: 12px 14px; border: 0.5px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; background: #fff; color: var(--dark); }
-  .lead-form input:focus { outline: none; border-color: var(--coffee); }
+  .lead-form input { min-width: 260px; padding: 12px 14px; border: 0.5px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; background: #fff; color: var(--brown-dark); }
+  .lead-form input:focus { outline: none; border-color: var(--brown); }
 
-  .footer-note { text-align: center; font-size: 11px; color: var(--text-muted); margin-top: 2rem; line-height: 1.6; }
-  .footer-note a { color: var(--coffee); }
+  .footer-note { text-align: center; font-size: 11px; color: var(--brown-muted); margin-top: 2rem; line-height: 1.6; }
+  .footer-note a { color: var(--brown); }
 
   @media (max-width: 640px) {
     .main { padding: 1.25rem 1rem 3rem; }
@@ -306,6 +296,16 @@
         <p class="metric-val" id="m-farmers">0.05</p>
         <p class="metric-unit" id="unit-farmers">equivalent farmer support unit</p>
       </div>
+      <div class="metric-card amber">
+        <p class="metric-lbl" id="lbl-goats">Goats<br>supported</p>
+        <p class="metric-val" id="m-goats">0.00</p>
+        <p class="metric-unit" id="unit-goats">surviving goat kids equivalent</p>
+      </div>
+      <div class="metric-card earth">
+        <p class="metric-lbl" id="lbl-compost">Compost<br>produced</p>
+        <p class="metric-val" id="m-compost">0.1</p>
+        <p class="metric-unit" id="unit-compost">kg of compost equivalent</p>
+      </div>
     </div>
   </div>
 
@@ -403,7 +403,9 @@
   </div>
 
   <p class="footer-note">
-    Carbon figures based on World Coffee Research LCA (2021) · Organic certified production methodology.<br>
+    Impact figures based on Rutasoka's Impact Measurement Summary 2025 (13 containers, 80% survival rate assumption).<br>
+    Carbon figures: Nab &amp; Maslin (2020), <em>Geo: Geography and Environment</em>, UCL (DOI: 10.1002/geo2.96) · Car equivalency: DEFRA average petrol car conversion factor.<br>
+    Roastery emissions: interim industry benchmark, pending a verified figure from Kahls Kaffe (Gothenburg) — Kahls' 2023-2024 sustainability report confirms fossil-free biogas roasting since 2018 and 100% renewable electricity.<br>
     Rutasoka · East Africa → Gothenburg → Your Cup · rutasoka.com
   </p>
 
@@ -420,33 +422,65 @@ const IMPACT = {
   cupsPerPack: 45,
   gramsPerCup: 10,
   roastedToGreenFactor: 1 / 0.85,
-  kgPerFarmerUnit: 20,
-  seedlingsPerKg: 6,
-  shadeTreesPerKg: 0.5,
-  compostTonnesPerKg: 30 / 10000,
-  hectaresPerKg: 15 / 10000,
-  goatSupportPerKg: 1 / 2500,
-  electrificationPerKg: 1 / 4000,
-  // Carbon — World Coffee Research LCA (2021) + GHG Protocol
-  co2PerKgRoastedRutasoka: 4.0,      // organic, direct trade, ship freight
-  co2PerKgRoastedConventional: 17.0, // conventional industry average
-  co2PerKmCar: 0.21,                 // EU average petrol car
-  co2AbsorbedPerTreePerYear: 21      // kg CO2 absorbed by one mature tree per year
+  // Source: Rutasoka Impact Measurement Summary 2025
+  // Based on 13 containers / total 2025 impact, 80% survival rate assumption.
+  // Figures below are the "Impact per 1,000 Cups" column from that summary.
+  seedlingsPer1000Cups: 2.36,
+  survivingSeedlingsPer1000Cups: 1.89,  // 80% survival rate
+  shadeTreesPer1000Cups: 0.19,
+  survivingShadeTreesPer1000Cups: 0.15, // 80% survival rate
+  goatsPer1000Cups: 0.002,
+  survivingGoatKidsPer1000Cups: 0.002,  // 75% survival x 1.5 kidding rate x 85% kid survival
+  compostKgPer1000Cups: 1.41,
+  farmersPer1000Cups: 0.029,
+  // Carbon — Nab & Maslin (2020), "Life cycle assessment synthesis of the carbon footprint
+  // of Arabica coffee", Geo: Geography and Environment, UCL. DOI: 10.1002/geo2.96
+  // Figures are per kg GREEN coffee, farm-to-port. "Sustainable" = organic practices + sea freight;
+  // "conventional" = higher agrochemical use + air freight (see study for full scenario definitions).
+  co2PerKgGreenSustainable: 3.51,     // kg CO2e per kg green coffee (sustainable/organic + sea freight)
+  co2PerKgGreenConventional: 15.33,   // kg CO2e per kg green coffee (conventional + air freight)
+  // Roastery-stage emissions — TBA pending a verified figure from Kahls Kaffe (Gothenburg), Rutasoka's
+  // actual roastery. Kahls' 2023-2024 Hållbarhetsrapport confirms the roastery has run fossil-free on
+  // biogas since 2018 and uses 100% renewable electricity (83% purchased, 17% on-site solar in 2024),
+  // but does not publish an absolute kg CO2e/kg roasted coffee figure. The value below is an external
+  // industry benchmark (Kaffeemacher roastery, Basel, 2022 data) used ONLY as an interim placeholder —
+  // Kahls' actual figure is very likely lower given their fossil-free energy mix. Replace this constant
+  // as soon as Kahls can share total roasting-stage energy consumption (kWh electricity / m3 biogas)
+  // against their 2,415 t of coffee roasted in 2024, which would let it be calculated directly.
+  co2RoasteryPerKgRoasted: 0.45,      // kg CO2e per kg roasted coffee — INTERIM PROXY, NOT KAHLS-VERIFIED
+  // Car equivalency — DEFRA/UK government GHG conversion factors, average petrol car (fleet-wide)
+  co2PerKmCar: 0.2076,                // kg CO2e per km
+  co2AbsorbedPerTreePerYear: 21       // kg CO2 absorbed by one mature tree per year (reference only, not currently displayed)
 };
 
 // ── CARBON ──
+// Converts a roasted-coffee quantity to its green-coffee equivalent (roasting loses ~15% mass),
+// then applies the Nab & Maslin (2020) per-kg-green footprint, plus an interim roastery-emissions
+// benchmark (see co2RoasteryPerKgRoasted comment above — TBA pending Kahls-specific data).
 function calcCarbon(kgRoasted) {
-  const rutasokaCO2     = kgRoasted * IMPACT.co2PerKgRoastedRutasoka;
-  const conventionalCO2 = kgRoasted * IMPACT.co2PerKgRoastedConventional;
+  const kgGreen         = kgRoasted * IMPACT.roastedToGreenFactor;
+  const rutasokaCO2     = (kgGreen * IMPACT.co2PerKgGreenSustainable)  + (kgRoasted * IMPACT.co2RoasteryPerKgRoasted);
+  const conventionalCO2 = (kgGreen * IMPACT.co2PerKgGreenConventional) + (kgRoasted * IMPACT.co2RoasteryPerKgRoasted);
   const savedCO2        = conventionalCO2 - rutasokaCO2;
   const savedKmCar      = Math.round(savedCO2 / IMPACT.co2PerKmCar);
   const savedFlightHrs  = (savedCO2 / 255).toFixed(1);
+
+  // Per-cup figures (used in the PDF footnote instead of hardcoded numbers)
+  const cupKgRoasted       = IMPACT.gramsPerCup / 1000;
+  const cupKgGreen         = cupKgRoasted * IMPACT.roastedToGreenFactor;
+  const rutasokaPerCupG     = Math.round(((cupKgGreen * IMPACT.co2PerKgGreenSustainable)  + (cupKgRoasted * IMPACT.co2RoasteryPerKgRoasted)) * 1000);
+  const conventionalPerCupG = Math.round(((cupKgGreen * IMPACT.co2PerKgGreenConventional) + (cupKgRoasted * IMPACT.co2RoasteryPerKgRoasted)) * 1000);
+  const perCupSavingsPct    = Math.round(((conventionalPerCupG - rutasokaPerCupG) / conventionalPerCupG) * 100);
+
   return {
     rutasokaCO2:     rutasokaCO2.toFixed(1),
     conventionalCO2: conventionalCO2.toFixed(1),
     savedCO2:        savedCO2.toFixed(1),
     savedKmCar:      savedKmCar.toLocaleString(),
-    savedFlightHrs:  savedFlightHrs
+    savedFlightHrs:  savedFlightHrs,
+    rutasokaPerCupG,
+    conventionalPerCupG,
+    perCupSavingsPct
   };
 }
 
@@ -506,7 +540,7 @@ function calcFromPersonal() {
   const totalCups = packs * IMPACT.cupsPerPack;
   const kgRoasted = (totalCups * IMPACT.gramsPerCup) / 1000;
   const kgGreen   = kgRoasted * IMPACT.roastedToGreenFactor;
-  return { audience:'personal', packs, people:1, totalCups:Math.round(totalCups), kgRoasted, kgGreen, farmers:Math.max(0.01, kgGreen/IMPACT.kgPerFarmerUnit), fikaBreaks:totalCups };
+  return { audience:'personal', packs, people:1, totalCups:Math.round(totalCups), kgRoasted, kgGreen, farmers:(totalCups/1000)*IMPACT.farmersPer1000Cups, fikaBreaks:totalCups };
 }
 
 function calcFromOffice() {
@@ -519,7 +553,7 @@ function calcFromOffice() {
   const totalCups = emp * cups * 5 * weeks;
   const kgRoasted = (totalCups * IMPACT.gramsPerCup) / 1000;
   const kgGreen   = kgRoasted * IMPACT.roastedToGreenFactor;
-  return { audience:'office', people:emp, cupsPerDay:cups, weeks, totalCups:Math.round(totalCups), kgRoasted, kgGreen, farmers:Math.max(1,kgGreen/IMPACT.kgPerFarmerUnit), fikaBreaks:Math.round(emp*2*5*weeks) };
+  return { audience:'office', people:emp, cupsPerDay:cups, weeks, totalCups:Math.round(totalCups), kgRoasted, kgGreen, farmers:(totalCups/1000)*IMPACT.farmersPer1000Cups, fikaBreaks:Math.round(emp*2*5*weeks) };
 }
 
 function calcFromDistributor() {
@@ -533,7 +567,7 @@ function calcFromDistributor() {
   const totalCups = clientSize * clientCups * 5 * weeks;
   const kgRoasted = (totalCups * IMPACT.gramsPerCup) / 1000;
   const kgGreen   = kgRoasted * IMPACT.roastedToGreenFactor;
-  return { audience:'distributor', people:clientSize, cupsPerDay:clientCups, months, totalCups:Math.round(totalCups), kgRoasted, kgGreen, farmers:Math.max(1,kgGreen/IMPACT.kgPerFarmerUnit), fikaBreaks:Math.round(clientSize*2*5*weeks) };
+  return { audience:'distributor', people:clientSize, cupsPerDay:clientCups, months, totalCups:Math.round(totalCups), kgRoasted, kgGreen, farmers:(totalCups/1000)*IMPACT.farmersPer1000Cups, fikaBreaks:Math.round(clientSize*2*5*weeks) };
 }
 
 function formatImpactNumber(value, decimals=0) {
@@ -554,6 +588,10 @@ function setMetricLabelsPersonal() {
   document.getElementById('unit-kg').textContent       = 'kg of coffee';
   document.getElementById('lbl-fika').innerHTML        = 'Fika moments<br>with a story';
   document.getElementById('unit-fika').textContent     = 'cups worth sharing';
+  document.getElementById('lbl-goats').innerHTML       = 'Goats<br>supported';
+  document.getElementById('unit-goats').textContent    = 'surviving goat kids equivalent';
+  document.getElementById('lbl-compost').innerHTML     = 'Compost<br>produced';
+  document.getElementById('unit-compost').textContent  = 'kg of compost equivalent';
 }
 
 function setMetricLabelsShared(modeName) {
@@ -569,6 +607,10 @@ function setMetricLabelsShared(modeName) {
   document.getElementById('unit-kg').textContent       = 'kg sourced directly';
   document.getElementById('lbl-fika').innerHTML        = 'Fika moments<br>with a story';
   document.getElementById('unit-fika').textContent     = 'breaks that matter';
+  document.getElementById('lbl-goats').innerHTML       = 'Goats<br>supported';
+  document.getElementById('unit-goats').textContent    = 'surviving goat kids equivalent';
+  document.getElementById('lbl-compost').innerHTML     = 'Compost<br>produced';
+  document.getElementById('unit-compost').textContent  = 'kg of compost equivalent';
 }
 
 // ── MAIN UPDATE ──
@@ -584,8 +626,11 @@ function update() {
     data = calcFromDistributor();
   }
 
-  const seedlings  = data.kgGreen * IMPACT.seedlingsPerKg;
-  const shadeTrees = data.kgGreen * IMPACT.shadeTreesPerKg;
+  const cupsInThousands = data.totalCups / 1000;
+  const seedlings   = cupsInThousands * IMPACT.survivingSeedlingsPer1000Cups;
+  const shadeTrees  = cupsInThousands * IMPACT.survivingShadeTreesPer1000Cups;
+  const goats       = cupsInThousands * IMPACT.survivingGoatKidsPer1000Cups;
+  const compostKg   = cupsInThousands * IMPACT.compostKgPer1000Cups;
 
   if (mode === 'personal') {
     setMetricLabelsPersonal();
@@ -595,6 +640,8 @@ function update() {
     document.getElementById('m-farmers').textContent   = formatImpactNumber(data.farmers, 2);
     document.getElementById('m-kg').textContent        = formatImpactNumber(data.kgRoasted, 1);
     document.getElementById('m-fika').textContent      = data.totalCups.toLocaleString();
+    document.getElementById('m-goats').textContent     = formatImpactNumber(goats, 2);
+    document.getElementById('m-compost').textContent   = formatImpactNumber(compostKg, 1);
   } else {
     setMetricLabelsShared(mode);
     document.getElementById('m-cups').textContent      = data.totalCups.toLocaleString();
@@ -603,6 +650,8 @@ function update() {
     document.getElementById('m-farmers').textContent   = formatImpactNumber(data.farmers, 0);
     document.getElementById('m-kg').textContent        = formatImpactNumber(data.kgRoasted, 0);
     document.getElementById('m-fika').textContent      = data.fikaBreaks.toLocaleString();
+    document.getElementById('m-goats').textContent     = formatImpactNumber(goats, 1);
+    document.getElementById('m-compost').textContent   = formatImpactNumber(compostKg, 0);
   }
 
   // Carbon display — simple human language
@@ -702,7 +751,7 @@ function update() {
 function handleReportDownload() {
   const email = document.getElementById('lead-email').value.trim();
   if (!email || !email.includes('@')) {
-    document.getElementById('lead-email').style.borderColor = '#C8842A';
+    document.getElementById('lead-email').style.borderColor = '#725847';
     document.getElementById('lead-email').placeholder = 'Please enter a valid email first';
     return;
   }
@@ -732,9 +781,15 @@ function downloadPDF(email) {
   const doc = new jsPDF({ unit:'pt', format:'a4', orientation:'portrait' });
 
   const W      = 595;
-  const cream  = [245,240,232]; const earth  = [61,43,31];   const amber  = [200,132,42];
-  const teal   = [29,158,117];  const tealBg = [225,245,238]; const muted  = [122,106,90];
-  const white  = [255,255,255]; const dark   = [26,21,16];    const earthMid = [80,55,35];
+  // ── Rutasoka brand colours (RGB, for jsPDF) ──
+  // cream/earth/amber/teal/tealBg/muted/dark/earthMid are kept as variable names to avoid touching
+  // every usage below, but now hold brand-mapped values instead of the old teal/amber scheme:
+  const cream  = [247,244,239]; const earth  = [114,88,71];  const amber  = [201,218,171]; // off-white / brown / light-green (accent text on dark bg)
+  const teal   = [112,142,64];  const tealBg = [201,218,171]; const muted  = [130,108,93]; // dark-green / light-green (section bg) / muted brown
+  const white  = [255,255,255]; const dark   = [74,57,46];    const earthMid = [74,57,46]; // white / dark brown (bold text + badge accent)
+  const darkGreenDeep = [50,64,27];    // darkened dark-green, for readable text on light-green boxes
+  const lightGreenPale = [228,236,213]; // pale tint of light-green, for inner track backgrounds
+  const mutedOnDark = [220,205,192];    // light muted tan, for de-emphasised text on the dark brown header/story card
   const pad    = 36;
   const inner  = W - pad * 2;
 
@@ -763,12 +818,12 @@ function downloadPDF(email) {
 
   /* HEADER */
   doc.setFillColor(earth[0],earth[1],earth[2]); doc.rect(0,0,W,118,'F');
-  doc.setFillColor(80,55,35); doc.circle(W-30,-20,80,'F');
+  doc.setFillColor(earthMid[0],earthMid[1],earthMid[2]); doc.circle(W-30,-20,80,'F');
   doc.setFont('helvetica','bold'); doc.setFontSize(24); doc.setTextColor(cream[0],cream[1],cream[2]); doc.text('RUTASOKA',pad,40);
   doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(amber[0],amber[1],amber[2]); doc.text('EAST AFRICA  .  GOTHENBURG  .  YOUR CUP',pad,53);
   doc.setFontSize(7); doc.setTextColor(amber[0],amber[1],amber[2]); doc.text('COFFEE IMPACT REPORT',W-pad,30,{align:'right'});
-  doc.setTextColor(160,140,120); doc.text(reportDate,W-pad,41,{align:'right'}); doc.text(email,W-pad,51,{align:'right'});
-  doc.setDrawColor(80,55,35); doc.setLineWidth(0.5); doc.line(pad,62,W-pad,62);
+  doc.setTextColor(mutedOnDark[0],mutedOnDark[1],mutedOnDark[2]); doc.text(reportDate,W-pad,41,{align:'right'}); doc.text(email,W-pad,51,{align:'right'});
+  doc.setDrawColor(earthMid[0],earthMid[1],earthMid[2]); doc.setLineWidth(0.5); doc.line(pad,62,W-pad,62);
   doc.setFont('helvetica','normal'); doc.setFontSize(16); doc.setTextColor(cream[0],cream[1],cream[2]); doc.text('What your coffee actually does.',pad,82);
   doc.setFillColor(earthMid[0],earthMid[1],earthMid[2]); doc.roundedRect(pad,90,80,14,7,7,'F');
   doc.setFont('helvetica','bold'); doc.setFontSize(6.5); doc.setTextColor(amber[0],amber[1],amber[2]); doc.text(modeLabel.toUpperCase()+' CALCULATOR',pad+40,99.5,{align:'center'});
@@ -787,35 +842,36 @@ function downloadPDF(email) {
     doc.setFont('helvetica','bold'); doc.setFontSize(20); doc.setTextColor(dark[0],dark[1],dark[2]); doc.text(m.value,cx+8,cy+46);
     doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(muted[0],muted[1],muted[2]); doc.text(m.unit,cx+8,cy+58);
   });
-  y += 2*(cardH+cardGap)+8;
+  const metricRows = Math.ceil(metrics.length/3);
+  y += metricRows*(cardH+cardGap)+8;
 
   /* PURCHASE PROFILE BARS */
   const barsH=94;
   doc.setFillColor(tealBg[0],tealBg[1],tealBg[2]); doc.roundedRect(pad,y,inner,barsH,5,5,'F');
   doc.setFillColor(teal[0],teal[1],teal[2]); doc.roundedRect(pad,y,4,barsH,2,2,'F');
-  doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor(8,80,65); doc.text('PURCHASE PROFILE',pad+12,y+13);
+  doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor(darkGreenDeep[0],darkGreenDeep[1],darkGreenDeep[2]); doc.text('PURCHASE PROFILE',pad+12,y+13);
   const trackX=pad+12; const labelColW=120; const trackW=inner-12-labelColW-65-8;
   bars.forEach((b,i)=>{
     const by=y+22+i*18; const fillW=Math.max(0,trackW*(b.pct/100));
-    doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(15,110,86); doc.text(b.label,trackX,by+5);
-    doc.setFillColor(185,225,210); doc.roundedRect(trackX+labelColW,by,trackW,6,3,3,'F');
+    doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(darkGreenDeep[0],darkGreenDeep[1],darkGreenDeep[2]); doc.text(b.label,trackX,by+5);
+    doc.setFillColor(lightGreenPale[0],lightGreenPale[1],lightGreenPale[2]); doc.roundedRect(trackX+labelColW,by,trackW,6,3,3,'F');
     doc.setFillColor(teal[0],teal[1],teal[2]); if(fillW>0) doc.roundedRect(trackX+labelColW,by,fillW,6,3,3,'F');
-    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(8,80,65); doc.text(b.val,W-pad-4,by+5.5,{align:'right'});
+    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(darkGreenDeep[0],darkGreenDeep[1],darkGreenDeep[2]); doc.text(b.val,W-pad-4,by+5.5,{align:'right'});
   });
   y += barsH+10;
 
   /* CARBON — DETAILED FOR PDF */
-  const carbonH = 110;
+  const carbonH = 128;
   doc.setFillColor(tealBg[0],tealBg[1],tealBg[2]); doc.roundedRect(pad,y,inner,carbonH,5,5,'F');
   doc.setFillColor(teal[0],teal[1],teal[2]); doc.roundedRect(pad,y,4,carbonH,2,2,'F');
-  doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor(8,80,65);
+  doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor(darkGreenDeep[0],darkGreenDeep[1],darkGreenDeep[2]);
   doc.text('CARBON FOOTPRINT  —  GHG PROTOCOL SCOPE 3 CATEGORY 1',pad+12,y+13);
 
   const cCardW = (inner-20)/3;
   const cCards = [
     { label:'Rutasoka order',          val:carbon.rutasokaCO2+' kg CO2e',      color:teal },
-    { label:'Conventional equivalent', val:carbon.conventionalCO2+' kg CO2e',  color:amber },
-    { label:'Carbon avoided',          val:carbon.savedCO2+' kg CO2e',         color:[29,158,117] }
+    { label:'Conventional equivalent', val:carbon.conventionalCO2+' kg CO2e',  color:earth },
+    { label:'Carbon avoided',          val:carbon.savedCO2+' kg CO2e',         color:amber }
   ];
   cCards.forEach((c,i) => {
     const cx = pad+12+i*(cCardW+4); const cy = y+20;
@@ -825,19 +881,23 @@ function downloadPDF(email) {
     doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(dark[0],dark[1],dark[2]); doc.text(c.val,cx+6,cy+27);
   });
 
-  doc.setFont('helvetica','normal'); doc.setFontSize(7.5); doc.setTextColor(15,110,86);
-  doc.text('Per cup: Rutasoka 40g CO2e  vs  Conventional 170g CO2e  (77% less carbon per cup)',pad+12,y+66);
+  doc.setFont('helvetica','normal'); doc.setFontSize(7.5); doc.setTextColor(darkGreenDeep[0],darkGreenDeep[1],darkGreenDeep[2]);
+  doc.text('Per cup: Rutasoka '+carbon.rutasokaPerCupG+'g CO2e  vs  Conventional '+carbon.conventionalPerCupG+'g CO2e  ('+carbon.perCupSavingsPct+'% less carbon per cup)',pad+12,y+66);
 
-  doc.setFontSize(7.5); doc.setTextColor(15,110,86);
+  doc.setFontSize(7.5); doc.setTextColor(darkGreenDeep[0],darkGreenDeep[1],darkGreenDeep[2]);
   doc.text('Saving equivalent: '+carbon.savedKmCar+' km not driven by car  |  '+carbon.savedFlightHrs+' hrs of short-haul flight avoided',pad+12,y+78);
 
   doc.setFont('helvetica','normal'); doc.setFontSize(6); doc.setTextColor(muted[0],muted[1],muted[2]);
-  const line1 = 'Source: World Coffee Research / Meemken et al. (2021). Organic certified baseline: 3.51 kg CO2e/kg green coffee.';
-  const line2 = 'Roastery emissions: 0.45 kg CO2e/kg roasted (GHG Protocol Scope 1). Conventional baseline: 15.33 kg CO2e/kg green.';
-  const line3 = 'Figures are indicative. For verified CSRD reporting, commission a certified lifecycle assessment for your supply chain.';
+  const line1 = 'Source: Nab & Maslin (2020), Geo: Geography and Environment, UCL (DOI 10.1002/geo2.96).';
+  const line2 = 'Sustainable baseline: 3.51 kg CO2e/kg green coffee. Conventional: 15.33 kg CO2e/kg green coffee.';
+  const line3 = 'Roastery emissions: interim proxy, pending verified data from Kahls Kaffe (Gothenburg).';
+  const line4 = 'Kahls has roasted fossil-free on biogas since 2018, with 100% renewable electricity.';
+  const line5 = 'Car equivalency: DEFRA average petrol car factor. Figures are indicative; commission a certified LCA for CSRD reporting.';
   doc.text(line1, pad+12, y+90);
-  doc.text(line2, pad+12, y+98);
-  doc.text(line3, pad+12, y+106);
+  doc.text(line2, pad+12, y+97);
+  doc.text(line3, pad+12, y+104);
+  doc.text(line4, pad+12, y+111);
+  doc.text(line5, pad+12, y+118);
   y += carbonH+10;
 
   /* STORY CARD */
@@ -849,7 +909,7 @@ function downloadPDF(email) {
   doc.setFillColor(earth[0],earth[1],earth[2]); doc.roundedRect(pad,y,inner,storyH,5,5,'F');
   doc.setFillColor(amber[0],amber[1],amber[2]); doc.roundedRect(pad,y,4,storyH,2,2,'F');
   doc.setFont('helvetica','bolditalic'); doc.setFontSize(9.5); doc.setTextColor(cream[0],cream[1],cream[2]); doc.text(quoteLines,pad+14,y+16);
-  doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(180,140,120); doc.text(originLines,pad+14,y+16+quoteLines.length*12+6);
+  doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(mutedOnDark[0],mutedOnDark[1],mutedOnDark[2]); doc.text(originLines,pad+14,y+16+quoteLines.length*12+6);
   y += storyH+10;
 
   /* SUPPLY CHAIN STRIP */
@@ -871,8 +931,8 @@ function downloadPDF(email) {
 
   /* FOOTER */
   doc.setFillColor(earth[0],earth[1],earth[2]); doc.rect(0,y,W,30,'F');
-  doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(160,140,120);
-  doc.text("Impact & carbon data based on Rutasoka's direct trade network · GHG Protocol Scope 3 · 2025",pad,y+18);
+  doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(mutedOnDark[0],mutedOnDark[1],mutedOnDark[2]);
+  doc.text("Impact data: Rutasoka Impact Measurement Summary 2025 (13 containers, 80% survival rate) · Carbon: GHG Protocol Scope 3",pad,y+18);
   doc.setFont('helvetica','bold'); doc.setTextColor(amber[0],amber[1],amber[2]); doc.text('rutasoka.com',W-pad,y+18,{align:'right'});
 
   doc.save('rutasoka-impact-report.pdf');
@@ -882,7 +942,4 @@ update();
 </script>
 </body>
 </html>
-    
-  </body>
-  
-</html>
+
